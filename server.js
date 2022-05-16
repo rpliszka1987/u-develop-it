@@ -15,7 +15,7 @@ app.use(express.json());
 const db = mysql.createConnection(
     {
         host: 'localhost',
-        // Your MySQL usernam
+        // Your MySQL username
         user: 'root',
         // Your MySQL password
         password: '',
@@ -30,6 +30,10 @@ const db = mysql.createConnection(
 //         message: 'Hello World'
 //     });
 // });
+
+db.query(`SELECT * FROM candidates`, (err, rows) => {
+    console.log(rows);
+});
 
 // Deafult response for any other request (Not Found)
 app.use((req, res) => {
