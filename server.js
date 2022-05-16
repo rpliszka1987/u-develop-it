@@ -31,11 +31,23 @@ const db = mysql.createConnection(
 //     });
 // });
 
-// Retrive all data from db
+// Get all candidates from db
 
-// db.query(`SELECT * FROM candidates`, (err, rows) => {
-//     console.log(rows);
-// });
+app.get('/api/candidates', (req, res) => {
+    const sql = `SELECT * FROM candidates`;
+
+    db.query(sql, (err, rows) => {
+        if(err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: 'success',
+            data: rows
+        });
+    });
+})
+
 
 // Get single candidate from db
 
